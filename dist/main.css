@@ -22,18 +22,21 @@ body {
     top: 0;
     left: 0;
     outline: none;
+    z-index: 1;
 }
 
 .container {
     height: 100vh;
     display: grid;
     place-items: center;
+    z-index: 2;
 }
 
 h1 {
     font-size: 8rem;
     text-transform: uppercase;
-    color: gold
+    color: gold;
+
 }
 
 section {
