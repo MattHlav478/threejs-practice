@@ -6,7 +6,7 @@ import * as dat from "dat.gui";
 // Loading
 const textureLoader = new THREE.TextureLoader();
 
-const normalTexture = textureLoader.load("/textures/NormalMap.png");
+const normalTexture = textureLoader.load("/textures/NormalMap-2.png");
 
 // Debug
 // const gui = new dat.GUI();
@@ -65,8 +65,6 @@ scene.add(pointLight2);
 
 // const pointLightHelper = new THREE.PointLightHelper(pointLight2, .8)
 // scene.add(pointLightHelper)
-
-
 
 // Light 3
 const pointLight3 = new THREE.PointLight(0xd6c71c, 2);
@@ -174,7 +172,7 @@ const tick = () => {
 
   sphere.rotation.y += 1.5 * (targetX - sphere.rotation.y);
   sphere.rotation.x = 0.5 * (targetY - sphere.rotation.x);
-  sphere.position.z = 0.5 * (targetY - sphere.rotation.x);
+  sphere.position.z = 0.75 * (targetY - sphere.rotation.x);
 
   // Update Orbital Controls
   // controls.update()
