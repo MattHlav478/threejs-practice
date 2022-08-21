@@ -50,13 +50,16 @@ h1 {
     color: gold
 }
 
-section {
+/* section {
     height: 100vh;
-}
+} */
 
 @media screen and (max-width: 768px){
 
+
     h1{
+        position:fixed;
+        margin-top: -10vh;
         font-size: 5rem;
         display:flex;
         flex-direction: column;
