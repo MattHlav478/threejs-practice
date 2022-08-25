@@ -9,7 +9,7 @@ const textureLoader = new THREE.TextureLoader();
 const normalTexture = textureLoader.load("/textures/NormalMap-3.png");
 
 // Debug
-// const gui = new dat.GUI();
+const gui = new dat.GUI();
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -50,10 +50,10 @@ scene.add(pointLight2);
 
 // light 2 gui
 // const light2 = gui.addFolder("Light 2");
-// light2.add(pointLight2.position, "x").min(-3).max(3).step(0.01);
-// light2.add(pointLight2.position, "y").min(-6).max(6).step(0.01);
-// light2.add(pointLight2.position, "z").min(-3).max(3).step(0.01);
-// light2.add(pointLight2, "intensity").min(0).max(10).step(0.01);
+// gui.add(pointLight2.position, "x").min(-3).max(3).step(0.01);
+// gui.add(pointLight2.position, "y").min(-6).max(6).step(0.01);
+// gui.add(pointLight2.position, "z").min(-3).max(3).step(0.01);
+// gui.add(pointLight2, "intensity").min(0).max(10).step(0.01);
 
 // const light2Color = {
 //   color: 0xff0000,
@@ -63,14 +63,14 @@ scene.add(pointLight2);
 //   pointLight2.color.set(light2Color.color);
 // });
 
-// const pointLightHelper = new THREE.PointLightHelper(pointLight2, .8)
-// scene.add(pointLightHelper)
+const pointLightHelper = new THREE.PointLightHelper(pointLight2, .8)
+scene.add(pointLightHelper)
 
 // Light 3
-const pointLight3 = new THREE.PointLight(0xd6c71c, 2);
-pointLight3.position.set(3, -2.12, -1.45);
-pointLight3.intensity = 2.36;
-scene.add(pointLight3);
+// const pointLight3 = new THREE.PointLight(0xd6c71c, 2);
+// pointLight3.position.set(3, -2.12, -1.45);
+// pointLight3.intensity = 2.36;
+// scene.add(pointLight3);
 
 // light 3 gui
 // const light3 = gui.addFolder("Light 3");
