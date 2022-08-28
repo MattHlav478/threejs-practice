@@ -9,7 +9,7 @@ const textureLoader = new THREE.TextureLoader();
 const normalTexture = textureLoader.load("/textures/NormalMap-3.png");
 
 // Debug
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -50,10 +50,10 @@ scene.add(pointLight2);
 
 // light 2 gui
 // const light2 = gui.addFolder("Light 2");
-// gui.add(pointLight2.position, "x").min(-3).max(3).step(0.01);
-// gui.add(pointLight2.position, "y").min(-6).max(6).step(0.01);
-// gui.add(pointLight2.position, "z").min(-3).max(3).step(0.01);
-// gui.add(pointLight2, "intensity").min(0).max(10).step(0.01);
+// light2.add(pointLight2.position, "x").min(-3).max(3).step(0.01);
+// light2.add(pointLight2.position, "y").min(-6).max(6).step(0.01);
+// light2.add(pointLight2.position, "z").min(-3).max(3).step(0.01);
+// light2.add(pointLight2, "intensity").min(0).max(10).step(0.01);
 
 // const light2Color = {
 //   color: 0xff0000,
@@ -63,14 +63,14 @@ scene.add(pointLight2);
 //   pointLight2.color.set(light2Color.color);
 // });
 
-const pointLightHelper = new THREE.PointLightHelper(pointLight2, .8)
-scene.add(pointLightHelper)
+// const pointLightHelper = new THREE.PointLightHelper(pointLight2, .8)
+// scene.add(pointLightHelper)
 
 // Light 3
-// const pointLight3 = new THREE.PointLight(0xd6c71c, 2);
-// pointLight3.position.set(3, -2.12, -1.45);
-// pointLight3.intensity = 2.36;
-// scene.add(pointLight3);
+const pointLight3 = new THREE.PointLight(0xd6c71c, 2);
+pointLight3.position.set(3, -2.12, -1.45);
+pointLight3.intensity = 2.36;
+scene.add(pointLight3);
 
 // light 3 gui
 // const light3 = gui.addFolder("Light 3");
@@ -79,8 +79,8 @@ scene.add(pointLightHelper)
 // light3.add(pointLight3.position, "z").min(-3).max(3).step(0.01);
 // light3.add(pointLight3, "intensity").min(0).max(10).step(0.01);
 
-// const pointLightHelper = new THREE.PointLightHelper(pointLight3, .8)
-// scene.add(pointLightHelper)
+// const pointLightHelper2 = new THREE.PointLightHelper(pointLight3, .8)
+// scene.add(pointLightHelper2)
 
 /**
  * Sizes
@@ -109,7 +109,7 @@ window.addEventListener("resize", () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(
-  75,
+  55,
   sizes.width / sizes.height,
   0.1,
   100
@@ -120,8 +120,8 @@ camera.position.z = 2;
 scene.add(camera);
 
 // Controls
-// const controls = new OrbitControls(camera, canvas)
-// controls.enableDamping = true
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
 
 /**
  * Renderer
@@ -138,6 +138,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  */
 
 document.addEventListener("mousemove", onMouseMove);
+document.addEventListener("touchmove", onTouchMove);
+
 
 let mouseX = 0;
 let mouseY = 0;
@@ -148,6 +150,14 @@ let targetY = 0;
 function onMouseMove(event) {
   const windowHalfX = window.innerWidth / 50;
   const windowHalfY = window.innerHeight / 50;
+
+  mouseX = event.clientX - windowHalfX;
+  mouseY = event.clientY - windowHalfY;
+}
+
+function onTouchMove(event) {
+  const windowHalfX = window.innerWidth;
+  const windowHalfY = window.innerHeight;
 
   mouseX = event.clientX - windowHalfX;
   mouseY = event.clientY - windowHalfY;
@@ -168,14 +178,14 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
   // Update objects
-  sphere.rotation.y = 0.2 * elapsedTime;
+  sphere.rotation.y = 0.9 * elapsedTime;
 
   sphere.rotation.y += 1.5 * (targetX - sphere.rotation.y);
   sphere.rotation.x = 0.5 * (targetY - sphere.rotation.x);
   sphere.position.z = 0.75 * (targetY - sphere.rotation.x);
 
   // Update Orbital Controls
-  // controls.update()
+  controls.update()
 
   // Render
   renderer.render(scene, camera);
